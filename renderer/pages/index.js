@@ -1,46 +1,24 @@
-import { useState, useEffect } from 'react'
+import React from "react";
+
+import FormTask from "../components/FormTask/FormTask";
+import Header from "../components/Header/Header";
+import Tasks from "../components/Tasks/Tasks";
+import { Container, Main } from "../components/utilsStyles";
+import { useTask } from "../context/TasksContext";
 
 const Home = () => {
-  const [input, setInput] = useState('')
-  const [message, setMessage] = useState(null)
-
-  useEffect(() => {
-    const handleMessage = (event, message) => setMessage(message)
-    global.ipcRenderer.on('message', handleMessage)
-
-    return () => {
-      global.ipcRenderer.removeListener('message', handleMessage)
-    }
-  }, [])
-
-  const handleSubmit = (event) => {
-    event.preventDefault()
-    global.ipcRenderer.send('message', input)
-    setMessage(null)
-  }
-
+  const { tasks } = useTask();
   return (
-    <div>
-      <h1>Hello Electron!</h1>
+    <Container>
+      <Header />
+      <Main>
+        <FormTask />
+        <Tasks />
+      </Main>
 
-      {message && <p>{message}</p>}
+      <p>Você tem o total de {tasks.length} tasks</p>
+    </Container>
+  );
+};
 
-      <form onSubmit={handleSubmit}>
-        <input
-          type="text"
-          value={input}
-          onChange={(e) => setInput(e.target.value)}
-        />
-      </form>
-
-      <style jsx>{`
-        h1 {
-          color: red;
-          font-size: 50px;
-        }
-      `}</style>
-    </div>
-  )
-}
-
-export default Home
+export default Home;

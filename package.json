@@ -1,6 +1,6 @@
 {
-  "name": "with-electron",
-  "productName": "ElectronNext",
+  "name": "tasky-app",
+  "productName": "Tasky App",
   "version": "1.0.0",
   "main": "main/index.js",
   "scripts": {
@@ -25,8 +25,12 @@
     "react-dom": "^16.12.0"
   },
   "dependencies": {
+    "@fortawesome/fontawesome-svg-core": "^1.2.34",
+    "@fortawesome/free-solid-svg-icons": "^5.15.2",
+    "@fortawesome/react-fontawesome": "^0.1.14",
     "electron-is-dev": "^1.1.0",
-    "electron-next": "^3.1.5"
+    "electron-next": "^3.1.5",
+    "styled-components": "^5.2.1"
   },
   "license": "MIT"
 }
